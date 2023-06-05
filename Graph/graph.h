@@ -39,18 +39,17 @@ public:
     bool insertVertex(string id, TV vertex) = 0;   
     bool createEdge(string id1, string id2, TE w) = 0;     
     bool deleteVertex(string id) = 0;     
-    bool deleteEdge(string id) = 0;   
-    TE &operator()(string start, string end)= 0;  
+    bool deleteEdge(string id1, string id2) = 0;   
+    TE &operator()(string id1, string id2)= 0;  
     float density() = 0;
     bool isDense(float threshold = 0.5) = 0;
-    bool isConnected()= 0;
-    bool isStronglyConnected() throw();
-    bool empty();
+    bool isConnected()= 0; //or StronglyConnected
+    bool empty() = 0;
     void clear()= 0;  
       
-    void displayVertex(string id)= 0;
-    bool findById(string id) = 0;
     void display() = 0;
+    void displayVertex(string id)= 0;
+    TV findById(string id) = 0;
 };
 
 #endif

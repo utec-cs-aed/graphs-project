@@ -1,22 +1,23 @@
-# Algoritmos y Estructura de Datos
+# Estructuras de Datos
 ## Proyecto sobre Grafos
 --------
+>## Integrantes
+>- 
+>- 
+>- 
+>- 
+------
 
-## Integrantes
-- 
-- 
-- 
+El presente proyecto consiste en implementar una estructura de datos de tipo grafo y los diferentes algoritmos de búsqueda. Como caso aplicativo, debe implementarse un JSON file parser que permita construir el grafo a partir de un dataset en formato JSON.
 
-----
-
-El proyecto del curso consiste en implementar una estructura de datos de grafo y un file parser. La estructura debe soportar los métodos y algoritmos descritos a continuacion:  
+La estructura del grafo debe soportar los métodos y algoritmos descritos a continuacion:  
 
 
 ## Graph data structure
 
 * El grafo debe ser dinámico (inserciones. eliminaciones, búsquedas, ...)
-* Se debe implementar los dos tipos de grafos: dirigidos y no-dirigidos.
-* No considerar loops ni multi-arista. 
+* Se debe dar soporte a los dos tipos de grafos: dirigidos y no-dirigidos.
+* Considerar solo grafos simples: sin loops ni multi-aristas. 
 
 
 ### Methods:
@@ -35,9 +36,7 @@ float density() const; // Calculates the density of the graph
 
 bool isDense(float threshold = 0.5) const; // Calculates the density of the graph, and determine if it is dense dependening on a threshold value
 
-bool isConnected(); // Detect if the graph is connected
-
-bool isStronglyConnected() throw(); // Detect if the graph is strongly connected (only for directed graphs)
+bool isConnected(); // Detect if the graph is connected, or if the graph is strongly connected (only for directed graphs)
 
 bool empty(); // If the graph is empty
 
@@ -47,38 +46,43 @@ void clear(); // Clears the graph
 ### Algorithms:
 ```cpp
 //Given the graph
-UndirectedGraph<char, int> graph;
+Graph<string, float> graph;
 
 //1- Generates a MST graph using the Kruskal approach (only for undirected graphs)
-Kruskal<char, int> kruskal(&graph);
-UndirectedGraph<char, int> result = kruskal.apply();//return a tree
+vector<Edge<string, float>*> result = exec_kruskal<string, float>(graph);//return a tree
 
-//2- Generates a MST graph using the Prim approach (only for undirected graphs)
-Prim<char, int> prim(&graph, "A");
-UndirectedGraph<char, int> result = prim.apply();//return a tree
+//2- Generates the path from the vertex "A" to the vertex "Z"
+unordered_map<string, int> heuristics = {{"1", 30}, {"2", 8}, {"3", 10}, {"4", 15}, {"5", 2}};
+vector<Edge<string, float>*> result = exec_astar<string, float>.apply("A", "Z", heuristics);
 
-//3- A *
-AStar<char, int> astar(&graph, "A", "Z", vector<int> heuristics);
-UndirectedGraph<char, int> result = astar.apply();
-
+//...similar way for the other techniques: DFS, BFS and Dijkstra
 ```
 
 
 ## JSON file parser
-* Construye un grafo a partir de una archivo JSON de aereopuertos del mundo. 
-
+* Construye el grafo a partir de una archivo JSON que contiene a todos los aereopuertos del mundo. 
 
 ### Methods:
 ```cpp
-void clear(); // Clears parser saved atributes
+// Clears parser saved atributes
+void clear(); 
 
-void readJSON(); // Parses JSON file and saves data into class
+// Parses JSON file and saves data into class
+void readJSON(); 
 // NOTE: each derived class has its own readJSON method
 
-void uGraphMake(UndirectedGraph<string, double> &tempGraph); // Adds the parsed data into the specified undirected graph
 
-void dGraphMake(DirectedGraph<string, double> &tempGraph); // Adds the parsed data into the specified directed graph
+// Adds the parsed data into the specified undirected graph
+void uGraphMake(UndirectedGraph<string, double> &tempGraph); 
+
+// Adds the parsed data into the specified directed graph
+void dGraphMake(DirectedGraph<string, double> &tempGraph); 
+
+// Apply the search algorithms and show the path from an origin airport to other one.
+void simulate_tours();
 ```
+
+
 
 ## [Git Karma Guidelines](http://karma-runner.github.io/5.2/dev/git-commit-msg.html)
 
