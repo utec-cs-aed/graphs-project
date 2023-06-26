@@ -1,5 +1,5 @@
 # Estructuras de Datos
-## Proyecto sobre Grafos
+## Tarea sobre Grafos
 --------
 >## Integrantes
 >- 
@@ -8,7 +8,7 @@
 >- 
 ------
 
-El presente proyecto consiste en implementar una estructura de datos de tipo grafo y los diferentes algoritmos de búsqueda. Como caso aplicativo, debe implementarse un JSON file parser que permita construir el grafo a partir de un dataset en formato JSON.
+El presente trabajo consiste en implementar una estructura de datos de tipo grafo y los diferentes algoritmos de búsqueda. Como caso aplicativo, debe implementarse un JSON file parser que permita construir el grafo a partir de un dataset en formato JSON.
 
 La estructura del grafo debe soportar los métodos y algoritmos descritos a continuacion:  
 
@@ -28,7 +28,7 @@ bool createEdge(string start, string end, E data); // Creates a new edge in the 
 
 bool deleteVertex(string id); // Deletes a vertex in the graph
 
-bool deleteEdge(string start, string end); // Deletes an edge in the graph, it is not possible to search by the edge value, since it can be repeated
+bool deleteEdge(string startId, string endId); // Deletes an edge in the graph, it is not possible to search by the edge value, since it can be repeated
 
 E &operator()(string start, string end); // Gets the value of the edge from the start and end vertexes
 
@@ -55,12 +55,13 @@ vector<Edge<string, float>*> result = exec_kruskal<string, float>(graph);//retur
 unordered_map<string, int> heuristics = {{"1", 30}, {"2", 8}, {"3", 10}, {"4", 15}, {"5", 2}};
 vector<Edge<string, float>*> result = exec_astar<string, float>.apply("A", "Z", heuristics);
 
-//...similar way for the other techniques: DFS, BFS and Dijkstra
+//...similar way for the other techniques: kruskal, DFS, BFS, Dijkstra and A*. 
 ```
-
+> Nota: Deben proponer sus propios casos de prueba en un archivo diferente (tester.cpp), evidenciando todos los algoritmos implementados. 
 
 ## JSON file parser
-* Construye el grafo a partir de una archivo JSON que contiene a todos los aereopuertos del mundo. 
+* Construye el grafo a partir de una archivo JSON que contiene a todos los aereopuertos del mundo.
+* Puede hacer uso de la libreria https://github.com/nlohmann/json. 
 
 ### Methods:
 ```cpp
@@ -71,7 +72,6 @@ void clear();
 void readJSON(); 
 // NOTE: each derived class has its own readJSON method
 
-
 // Adds the parsed data into the specified undirected graph
 void uGraphMake(UndirectedGraph<string, double> &tempGraph); 
 
@@ -81,35 +81,3 @@ void dGraphMake(DirectedGraph<string, double> &tempGraph);
 // Apply the search algorithms and show the path from an origin airport to other one.
 void simulate_tours();
 ```
-
-
-
-## [Git Karma Guidelines](http://karma-runner.github.io/5.2/dev/git-commit-msg.html)
-
-```
-<type>(<scope>): <subject>
-
-<body>
-```
-
-### Allowed ```<type>``` values
-
-* feat (new feature for the user, not a new feature for build script)
-* fix (bug fix for the user, not a fix to a build script)
-* docs (changes to the documentation)
-* style (formatting, missing semi colons, etc)
-* refactor (refactoring production code, eg. renaming a variable)
-* test (adding missing tests, refactoring tests)
-* chore (updating grunt tasks etc)
-
-### Allowed ```<scope>``` values
-
-* graph
-* directedGraph
-* undirectedGraph
-* parser
-* main
-* tester
-
-
-> **PD:** Puntos extras sobre Evaluación Continua si se implementa una GUI.
